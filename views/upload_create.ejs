@@ -1,169 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>RevRentals</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<% include('partials/head') %>
 
-   <style>
-    body{
-
-      background: #F5F5F5;
-      font-family: "helvetica neue";
-      color: #666;
-      padding: 0 20%;
-      list-style-type: none;
-    }
-
-    .jumbotron{
-      background: #F5F5F5;
-      font-family: "helvetica neue";
-      padding: 20% 32%;
-    }
- 
-    .container{
-      padding: 5px;
-      margin: 0px 0px;
-    }
-    
-   
-    table {
-    border-collapse: collapse;
-    width: 100%;
-    }
-
-    th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    }
-
-    tr:hover {background-color:#f5f5f5;}
-
-    .navbar-brand img {
-      height: 30px;
-      display: inline-block;
-      margin-left: 10px;
-  }
-  h4{
-    color: #4881ea;
-    text-align: center;
-    }
-
-    .dropbtn {
-  display: inline-block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-    overflow: hidden;
-    display: inline-block;
-
-}
-
-
-#sps {
-  position: relative;
-  display: inline-block;
-  padding-left: 20px;
-}
-
-.dropdown-content {
-  display: none;
-  background-color: #f9f9f9;
-  min-width: 160px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  padding: 12px 16px;
-  z-index: 1;
-}
-
-
-    .navbar-left img {
-      height: 80px;
-      width: 190px;
-      display: inline-block;
-      margin: 0,0;
-      }
-
-     #sps {
-      position: relative;
-      display: inline-block;
-      padding-left: 20px;
-      }
-
-     .dropdown-content {
-      display: none;
-      background-color: #f5f5f5;
-      min-width: 160px;
-      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-      padding: 12px 16px;
-      z-index: 1;
-      }
-
-      #sps:hover .dropdown-content {
-      display: block;
- }
-     .navbar {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        border: 0;
-        border-radius: 0;
-        font-size: 15px;
-        letter-spacing: 5px;
-        background-color: #ffff;
-        font-color:#222;
-        font: Lato, Arial, Helvetica, sans-serif;
-
-
-      }
-      .navbar-nav  li a:hover {
-        color: #222 !important;
-      }
-</style>
-</head>
-
-
-<body>
-<!-- 
-<nav class="navbar navbar-default">
-  <div class="container">
-    <div class="navbar-header">
-      
-      <a class="navbar-left" >
-        <img src="/public/images/logos/Rev-Rentals-logo-0319-01.jpg">
-      </a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="upload_schedules">Edit Table</a></li>
-        <li class="dropdown">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="users">List of Users</a></li><br>
-            <li><a href="signup">Create New User</a></li><br>
-              
-
-
-          </ul>
-        </li>
-
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-
-      </ul>
-    </div>
-  </div>
-  <hr> 
-</nav> 
-      <ul class="nav navbar-nav navbar-right">
-       
-        <li><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>-->
 <div class="container-center">
    <h4>Create</h4>
    <p>Enter the details about the listing</p>
@@ -298,16 +134,12 @@
 <div class="form-group row">
     <label class="col-md-4 col-form-label"></label>
     <div class="col-md-4">
-        <a href="/{{req.params.home_id}}" class="btn btn-secondary">Cancel</a>
+        <a href="/<%= req.params.home_id %>" class="btn btn-secondary">Cancel</a>
     <input type="submit" class="btn btn-primary" value="Add">
     </div>
 </div>
 
 </form>
 </div>
-</body>
-</html>
 
-
-
-
+<% include('partials/footer') %>

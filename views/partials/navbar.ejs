@@ -1,0 +1,62 @@
+  <nav class="navbar" id="social">
+
+    <div class="hide-md-lg">
+    <a href="#" class='fab fa-linkedin-in'></a>
+    <a href="#" class='fab fa-instagram'></a>
+    <a href="#" class='fab fa-twitter'></a>
+    <a href="#" class='fab fa-facebook-f'></a>
+    <a href="mailto:revrentalsmtl@gmail.com?Subject=Hello%20again" class='far fa-envelope'"> revrentalsmtl@gmail.com</a>
+    <a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a>
+    <div class="navbar-header">
+      
+      <a href="menu" class="navbar-left" >
+        <img src="<%= req.current_home.logo_uri %>">
+      </a>
+    </div>
+     <li class="navbar-nav navbar-left"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    
+
+   </div>
+
+  </nav>
+   
+<nav class="navbar navbar">
+  <div class="container">
+   <!-- <div class="navbar-header">
+      
+      <a href="menu" class="navbar-left" >
+        <img src="<%= req.current_home.logo_uri %>">
+      </a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms<span class="caret"></span></a>
+          <ul class="dropdown-menu" style="float:left">
+            <li style="float:left"><a href="public/assets/forms/Revrentals Rental Application Form (English).jpg">1.Revrentals Rental Application Form (English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Revrentals Demande de location (Français).jpg">2.Revrentals Demande de location (Français)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Oligny Thibodeau PRE-RENTAL application form(English).jpg">3.Oligny Thibodeau PRE-RENTAL application form(English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Oligny Thibodeau application de Pre location(Francais).jpg">4.Oligny Thibodeau application de Pre location(Francais)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/CORPIQ Building Regulations (English).jpg">5.CORPIQ Building Regulations (English)</a></li><br>
+             <li style="float:left"><a href="public/assets/forms/CORPIQ Règlements de immeubles (Français).jpg">6.CORPIQ Règlements de immeubles (Français)</a></li><br>
+            <li style="float:left"><a target="_blank" href="public/assets/forms/Hydro Quebec Form (English).jpg">7.Hydro Quebec Form (English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Hydro Quebec Formulaire (Français).jpg">8.Hydro Quebec Formulaire (Français)</a></li><br><li style="float:left"><a href="public/assets/forms/Co signer Document (English).jpg">9.Co signer Document (English)</a></li><br><li style="float:left"><a href="public/assets/forms/Caution du Bail (Français).jpg">10.Caution du Bail (Français)</a></li><br><li style="float:left"><a href="public/assets/forms/Authorisation to communicate by Email (English).jpg">11.Authorisation to communicate by Email (English)</a></li><br><li style="float:left"><a href="public/assets/forms/Autorisation de communiquer par courriel (Français).jpg">12.Autorisation de communiquer par courriel (Français)</a></li><br>
+
+      
+          </ul>
+        </li>
+	<% if (isAdmin) { %>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="float:left"href="users">List of Users</a></li><br>
+            <li><a style="float:left"href="signup">Create New User</a></li><br>
+          </ul>
+        </li>
+        <!--<li><a href="/<%= req.params.home_id %>/new">Edit Table</a></li>-->
+        <li>  <a href="/<%= req.params.home_id %>/new">New</a></li>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+</nav>

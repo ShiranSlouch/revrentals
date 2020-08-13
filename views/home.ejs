@@ -1,0 +1,86 @@
+<% include('partials/head') %>
+<% include('partials/navbar') %>
+
+<!--edit by table-->
+<h1><%= req.current_home.header_title %></h1>
+<h5><a href="https://www.revrentals.ca">Visit Website: WWW.REVRENTALS.CA</a></h5>
+
+<h4 style="font-weight: bold"><mark>List Of Vacant Apartment Update: <%= lastUpdateDate %></mark></h4>
+  <div class="container" id="tables">
+    <form class="form-inline">
+      
+    <!-- Sort By | Select Basic -->
+    <div class="form-group">
+        <select id="sortBy" name="sortBy" class="form-control">
+            <option value="">Sort By</option>
+            <option value="Address">Address</option>
+            <option value="Apt">Apt</option>
+            <option value="Size">Size</option>
+            <option value="Description">Description</option>
+            <option value="picture">Picture</option>
+            <option value="Price">Price</option>
+            <option value="date_of_availability">Date of Availability Contact</option>
+        </select>
+        <select id="sortDir" name="sortDir" class="form-control">
+            <option value="">Direction</option>
+            <option value="asc">↑ Asc</option>
+            <option value="desc">↓ Desc</option>
+        </select>
+        <button id="sortBtn" name="" class="btn btn-info">Sort</button>
+    </div>
+    </form>
+
+  <div class="table-responsive" style="background:white">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="font-style: bold">Address</th>
+        <th>Apt#</th>
+        <th>Size</th>
+        <th>Description</th>
+        <th>Picture</th>
+        <th>Price</th>
+        <th>Date of Availability</th>
+        <th>Contact</th>
+	<% if (isAdmin) { %>
+          <th>Edit</th>
+	<% } %>
+      </tr>
+    </thead>
+    <tbody>
+      <% uploads.forEach(upload => { %>
+	<% if (hidden) { return; } %>
+        <tr>
+          <td><%= upload.Address %></td>
+          <td><%= upload.Apt %></td>
+          <td><%= upload.Size %></td>
+          <td><%= upload.Description %></td>
+          <td>
+            <% if (upload.picture_uri) { %>
+            <a href="/<%= req.current_home.id %>/uploads/<%= id %>/view" title="View pictures">
+              <!-- <img class="img img-rounded" src="<%= picture_uri %>" /> -->
+              <i class="fa fa-eye"></i>
+            </a>
+            <% } %>
+          </td>
+          <td>$<%= upload.Price %></td>
+          <td><%= upload.date_of_availability %></td>
+          <td><%= upload.contact %></td>
+	  <% if (isAdmin) { %>
+            <th>
+              <a href="/<%= req.params.home_id %>/uploads/<%= id %>/edit">
+                <i class="fas fa-pencil-alt"></i>
+              </a>
+              <a href="/<%= req.params.home_id %>/uploads/<%= id %>/delete">
+                <i class="fa fa-times"></i>
+              </a>
+            </th>
+          <% } %>
+         </tr>
+     <% }) %>
+    </tbody>
+  </table>
+  </div>
+</div>
+<script>$('table').DataTable();</script>
+<% include('partials/footer') %>

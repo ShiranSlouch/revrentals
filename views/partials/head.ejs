@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>REVRENTALS</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="/public/css/style.css">
+</head>
+
+<%
+  const bgImg = typeof body_background_image === "undefined" ? null : body_background_image;
+  const bodyStyle = ""
+  if (bgImg) { 
+    bodyStyle += "background-image: url('" + bgImg + "');";
+  }
+%>
+
+<body style="<%- bgImg %>">

@@ -1,0 +1,29 @@
+<% include('partials/head', {
+	body_background_image: "public/images/background/footer.jpg"
+}) %>
+<% include('partials/navbar') %>
+  <h2>LOGIN</h2>
+  <form class="modal-content animate" action="" method="post">
+   
+    <div class="container">
+      <label for="username"><b>Email</b></label>
+      <input type="text" placeholder="Enter Username" name="username" required>
+
+      <label for="password"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="password" required>
+        
+      <button type="submit" class="btn btn-primary">Login</button>
+      <label>
+        <input type="checkbox" checked="checked" name="remember"> Remember me
+      </label>
+    </div>
+
+    <div class="container" style="background-color:#00000">
+      <a type="button" href="/login" class="cancelbtn">Cancel</a>
+    <span class="psw">Forgot <a href="/login/forgot-password">password?</a></span>
+    </div>
+  </form>
+
+<h1>Gestion RevRentals inc</h1>
+
+<% include('partials/footer') %>

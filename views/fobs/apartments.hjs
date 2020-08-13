@@ -1,0 +1,13 @@
+<% include('../partials/head') %>
+ <div class="container-fluid bg-1 text-center">
+    <a href="#" class="btn btn-default btn-lg">Apartment 1</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 2</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 3</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 4</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 5</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 6</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 7</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 8</a>
+    <a href="#" class="btn btn-default btn-lg">Apartment 9</a>
+  </div>
+<% include('../partials/footer') %>

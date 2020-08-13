@@ -1,0 +1,57 @@
+<% include('partials/head') %>
+<form action="/edit-user" method="post" style="border:1px solid #ccc">
+  <div class="container">
+    <h1>Edit User</h1>
+    <hr>
+
+  <input type="hidden" name="id"  value="<%= user.id %>">
+    <label for="first_name"><b>First name</b></label>
+    <input type="text" placeholder="Enter First name" name="first_name" required value="<%= user.first_name %>">
+
+    <label for="last_name"><b>Last name</b></label>
+    <input type="text" placeholder="Enter Last name" name="last_name" required value="<%= user.last_name %>">
+
+
+    <label for="email"><b>Email</b></label>
+    <input type="text" placeholder="Enter Email" name="email" required value="<%= user.email %>">
+
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password">
+
+    <label for="password2"><b>Repeat Password</b></label>
+    <input type="password" placeholder="Repeat Password" id="password2">
+   <button class="btn btn-secondary" id="generate-pwd">Generate a Strong Password</button>
+    <script>
+      document.querySelector("#generate-pwd").onclick = function (e) {
+       e.preventDefault()
+       var pwd = Math.random().toString(36).slice(2);
+       var $pwd = document.querySelector("[name='password']")
+       var $pwd2 = document.querySelector("#password2")
+       $pwd.value = $pwd2.value = pwd
+       $pwd.setAttribute("type", "text")
+       $pwd2.setAttribute("type", "text")
+      }
+    </script>
+
+    
+   <div class="form-group">
+      <label for="sel1">Permission</label>
+      <select id="permissionSelect" data-value="<%= user.type %>" class="form-control" style="background-color: #ddd;" name="type">
+        <option value="0">User</option>
+        <option value="1">Admin</option>
+        <option value="2">Super Admin</option>
+      </select>
+
+      <script>
+        var select = document.querySelector("#permissionSelect")
+        select.value = select.dataset.value
+      </script>
+    </div>
+   
+    <div class="clearfix">
+      <a href="/users" class="cancelbtn">Cancel</a>
+      <button type="submit" class="signupbtn">Edit</button>
+    </div>
+  </div>
+</form> 
+<% include('partials/footer') %>

@@ -19,7 +19,7 @@ const KnexSessionStore = connectSessionKnex(session);
 
 express()
 
-  .set("view engine", "hjs")  // configure template engine
+  .set("view engine", "ejs")  // configure template engine
   .use(cookieParser())
   .use(bodyParser.json())
   .use(bodyParser.urlencoded({extended: true}))
