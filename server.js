@@ -36,6 +36,10 @@ express()
   .use(passport.session())
   .use((req, res, next) => {
     
+    res.locals = {
+ 	 req,
+	isAdmin: req.user.is_admin || req.user.is_super_admin 
+    }
     if(!req.cookies)
       res.cookie('revrentals', { httpOnly: true });
     next();

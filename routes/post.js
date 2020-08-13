@@ -190,9 +190,7 @@ router
 
     res.render("home", {
       uploads,
-      lastUpdateDate: moment(lastUpdateDate).format("LLL"),
-      isAdmin: req.user.is_admin || req.user.is_super_admin,
-      req
+      lastUpdateDate: moment(lastUpdateDate).format("LLL")
     });
   })  
 })

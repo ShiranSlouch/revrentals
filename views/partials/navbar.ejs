@@ -9,8 +9,9 @@
     <a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a>
     <div class="navbar-header">
       
+<% req.current_home = req.current_home || {} %>
       <a href="menu" class="navbar-left" >
-        <img src="<%= req.current_home.logo_uri %>">
+        <img src="<%= req.current_home.logo_uri || "/public/images/logos/Rev-Rentals-logo-page-001.jpg" %>">
       </a>
     </div>
      <li class="navbar-nav navbar-left"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>

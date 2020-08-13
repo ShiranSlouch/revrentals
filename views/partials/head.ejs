@@ -12,10 +12,11 @@
 
 <%
   const bgImg = typeof body_background_image === "undefined" ? null : body_background_image;
-  const bodyStyle = ""
+  console.log(bgImg)
+  let bodyStyle = ""
   if (bgImg) { 
     bodyStyle += "background-image: url('" + bgImg + "');";
   }
 %>
 
-<body style="<%- bgImg %>">
+<body style="<%- bodyStyle %>">
