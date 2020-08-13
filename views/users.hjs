@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RevRentals</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+ <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+
+   <style>
+    body{
+
+      background: #F5F5F5;
+      font-family:  Lato, Arial, Helvetica, sans-serif;
+      color: #666;
+      list-style-type: none;
+    
+    }
+    .navbar-left img {
+      height: 50px;
+      width: 150px;
+      display: inline-block;
+      margin: 0,0;
+      }
+
+    .navbar {
+        padding-top: 0px;
+        min-height: 33px;
+        padding-bottom: 0px;
+        border: 0;
+        border-radius: 0;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-color:#00008B;
+        font-family: Lato, Arial, Helvetica, sans-serif;
+        background-color: 0;
+
+      }
+
+      }
+      .navbar-nav  li a:hover {
+        color: #222 !important;
+      }
+      .navbar-nav  li a:hover {
+        color: #222 !important;
+      }
+      
+    
+      /* Navbar links */
+    .navbar a {
+        float: right;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        margin: 5px 5px;
+      }
+
+    .container{
+      padding: 5px;
+      margin: 0px 0px;
+    }
+    .container-center{
+            padding: 0 20%;
+
+    }
+    
+   
+    table {
+    border-collapse: collapse;
+    width: 100%;
+    }
+
+    th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    }
+
+    tr:hover {background-color:#f5f5f5;}
+
+ 
+  h4{
+    color: #4881ea;
+    text-align: center;
+    }
+
+     
+     
+    .fa {
+        font-size: 10px;
+        width: 10px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .fa:hover {
+          opacity: 0.7;
+      }
+
+      .fa-facebook {
+        color: white;
+      }
+
+      .fa-twitter {
+        color: white;
+      }
+
+      .
+      .fa-linkedin {
+        color: white;
+      }
+
+      .fa-instagram {
+        color: white;
+      }
+    
+    #social {
+        width: 100%;
+        background-color: #00004d;
+        overflow: auto;
+        padding: 0;
+        margin: 0;
+        
+      }
+    
+
+      
+     nav#social {
+    padding: 5px;  }
+
+    .far {
+      border-right: 1px solid white;
+      padding: 0 10px;
+      margin-right: 11px;
+      border-left: 1px solid white;
+      }
+    #bor{
+        border-left: : 2px solid white;
+}
+
+     
+      .hide-md-lg {
+    display: block;
+    text-align: center;
+  }
+          
+     
+        
+
+</style>
+</head>
+
+
+<body >
+
+
+  <nav class="navbar" id="social">
+    <div class="hide-md-lg">
+    <a href="#" class='fab fa-linkedin-in'></a>
+    <a href="#" class='fab fa-instagram'></a>
+    <a href="#" class='fab fa-twitter'></a>
+    <a href="#" class='fab fa-facebook-f'></a>
+    <a href="mailto:revrentalsmtl@gmail.com?Subject=Hello%20again" class='far fa-envelope'"> revrentalsmtl@gmail.com</a>
+    <a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a>
+     <li class="navbar-nav navbar-left"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+   </div>
+
+  </nav>
+   
+<nav class="navbar navbar">
+  <div class="container">
+    <!--<div class="navbar-header">
+      
+      <a href="menu" class="navbar-left" >
+        <img src="{{req.current_home.logo_uri}}">
+      </a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms<span class="caret"></span></a>
+          <ul class="dropdown-menu" style="float:left">
+            <li style="float:left"><a href="public/assets/forms/merge_from_ofoct-2.jpg">1.RevRentals Rental application model</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/merge_from_ofoct-3.jpg">2.RevRentals demande de location modèle</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/pre rental application form Oligny Thibodeau-page-001.jpg">3.pre rental application form Oligny Thibodeau</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/0001-2.jpg">4.Building regulations french and english</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/0001-3.jpg">5.formulaire hydro qc</a></li><br>
+             <li style="float:left"><a href="public/assets/forms/caution du bail-page-001.jpg">6.caution du bail</a></li><br>
+            <li style="float:left"><a target="_blank" href="public/assets/forms/Autorisation du locataire de communiquer par courriel_2_fr-page-001.jpg">7.Autorisation to communicate by Email</a></li><br>
+
+      
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="float:left"href="users">List of Users</a></li><br>
+            <li><a style="float:left"href="signup">Create New User</a></li><br>
+            
+          </ul>
+        </li>
+        <!--<li><a href="/{{req.params.home_id}}/new">Edit Table</a></li>
+        <li>  <a href="/{{req.params.home_id}}/new">New</a></li>-->
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="container-center">
+   <h4>List Of Users</h4>
+   <a href="/" onClick="history.back(); return false;">Back to Home</a>
+  <table class="table table-striped">
+
+    <thead>
+     
+      <tr>
+        <th>First name</th>
+        <th>Last name</th>
+        <th>Email</th>
+        {{#user.is_admin}}
+        <th></th>
+        <th></th>
+        {{/user.is_admin}}
+      </tr>
+    </thead>
+  
+      
+      <tbody>
+       {{#users}}
+          <tr>        
+         <ul style="list-style-type: none;">
+         <li>
+          <td> {{first_name}}</td>
+          <td>{{last_name}}</td>
+          <td>{{email}}</td> 
+          {{#user.is_admin}}
+          <td>
+            <a href="/edit-user/{{id}}" class="btn btn-link">Edit</a>
+          </td>
+          <td>
+            <form method="POST" action="/delete-user/{{id}}">
+              <input type="submit" value="Delete" class="btn btn-link"/>
+            </form>
+          </td>
+          {{/user.is_admin}}
+
+        </li>
+        </ul>
+      </tr>
+                    {{/users}}
+
+      </tbody>
+
+  </table>
+
+</div>
+</body>
+</html>
+
+
+
+

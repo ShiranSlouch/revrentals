@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>RevRentals</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+   <style>
+   @import url("//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css");
+    body{
+
+      font-family:  Lato, Arial, Helvetica, sans-serif;
+      background-image: url({{req.current_home.background_img}}) ;
+      background-repeat: no-repeat;
+  background-attachment: fixed;
+    background-size: cover;
+
+
+      
+      }
+    .navbar-left img {
+      height: 50px;
+      width: 150px;
+      display: inline-block;
+      margin: 0,0;
+      }
+
+    .navbar {
+        padding-top: 0px;
+        min-height: 33px;
+        padding-bottom: 0px;
+        border: 0;
+        border-radius: 0;
+        font-size: 15px;
+        letter-spacing: 1px;
+        font-color:#222;
+        font-family: Lato, Arial, Helvetica, sans-serif;
+        background-color: 0;
+
+      }
+      
+    
+    
+      /* Navbar links */
+    .navbar a {
+        float: right;
+        text-align: center;
+        color: white;
+        text-decoration: none;
+        font-size: 15px;
+        margin: 5px 5px;
+      }
+    
+    .container {
+    width: 100%;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+table.dataTable.no-footer {
+  border: none !important;
+}
+    .hide-md-lg {
+        display: block;
+        text-align: center;
+      }
+     
+     h1{
+      text-align: center;
+     }
+    h4{
+      color: #4881ea;
+      text-align: center;
+      }
+    h5{
+        color:;
+        text-align: center;
+       }
+
+    .table {
+      padding: 0,20px;
+      font-family: "helvetica neue";
+
+     }
+    table {
+        width: 70%;
+        margin: 20px auto;
+        background-color: #FFFFFF;
+        border: solid;
+      }
+
+      
+     
+    .fa {
+        font-size: 10px;
+        width: 10px;
+        text-align: center;
+        text-decoration: none;
+      }
+
+      .fa:hover {
+          opacity: 0.7;
+      }
+
+      .fa-facebook {
+        color: white;
+      }
+
+      .fa-twitter {
+        color: white;
+      }
+
+      .
+      .fa-linkedin {
+        color: white;
+      }
+
+      .fa-instagram {
+        color: white;
+      }
+    
+    #social {
+        width: 100%;
+        background-color: #00004d;
+        overflow: auto;
+        padding: 0;
+        margin: 0;
+        
+      }
+    
+
+    .container-fluid{
+            margin: 50%;
+      }
+    nav#social {
+    padding: 5px;  }
+
+    .far {
+      border-right: 1px solid white;
+      padding: 0 10px;
+      margin-right: 11px;
+      border-left: 1px solid white;
+      }
+    #bor{
+        border-left: : 2px solid white;
+
+        }
+       
+    td img.img-rounded {
+          max-width: 100px;
+      }
+     
+     /* Apt & Size */          
+          th:nth-of-type(2) {
+              width: 40px;
+          }
+
+          th:nth-of-type(3) {
+              width: 40px;
+          }
+
+          /* Description */
+          td:nth-of-type(4) {
+            word-break: break-word;
+          }
+
+          /* Contact */
+          th:nth-of-type(6) {
+              width: 50px;
+          }
+
+          /* Actions */
+          th:last-of-type {
+              width: 20px;
+          }
+        .form-inline .form-group {
+        display: inline-block;
+        margin-bottom: 0;
+       vertical-align: 0; 
+        }
+       .nav li a:hover {
+          background-color: #00004d;
+          color: white;
+          font-size: 15px;
+        }
+         #myNavbar{
+          float: left;
+
+        }
+      
+     .col-md-1{
+    position: relative;
+    min-height: 1px;
+    padding-right: 15px;
+    padding-left: 1px;
+      }
+      .jumbotron{
+        width: 30%;
+        position: fixed;
+        text-align: center;
+        height: 20px;
+      }
+
+        </style>
+            
+</head>
+<body>
+
+
+  <nav class="navbar" id="social">
+
+    <div class="hide-md-lg">
+    <a href="#" class='fab fa-linkedin-in'></a>
+    <a href="#" class='fab fa-instagram'></a>
+    <a href="#" class='fab fa-twitter'></a>
+    <a href="#" class='fab fa-facebook-f'></a>
+    <a href="mailto:revrentalsmtl@gmail.com?Subject=Hello%20again" class='far fa-envelope'"> revrentalsmtl@gmail.com</a>
+    <a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a>
+    <div class="navbar-header">
+      
+      <a href="menu" class="navbar-left" >
+        <img src="{{req.current_home.logo_uri}}">
+      </a>
+    </div>
+     <li class="navbar-nav navbar-left"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+    
+
+   </div>
+
+  </nav>
+   
+<nav class="navbar navbar">
+  <div class="container">
+   <!-- <div class="navbar-header">
+      
+      <a href="menu" class="navbar-left" >
+        <img src="{{req.current_home.logo_uri}}">
+      </a>
+    </div>-->
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-left">
+         <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Forms<span class="caret"></span></a>
+          <ul class="dropdown-menu" style="float:left">
+            <li style="float:left"><a href="public/assets/forms/Revrentals Rental Application Form (English).jpg">1.Revrentals Rental Application Form (English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Revrentals Demande de location (Français).jpg">2.Revrentals Demande de location (Français)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Oligny Thibodeau PRE-RENTAL application form(English).jpg">3.Oligny Thibodeau PRE-RENTAL application form(English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Oligny Thibodeau application de Pre location(Francais).jpg">4.Oligny Thibodeau application de Pre location(Francais)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/CORPIQ Building Regulations (English).jpg">5.CORPIQ Building Regulations (English)</a></li><br>
+             <li style="float:left"><a href="public/assets/forms/CORPIQ Règlements de immeubles (Français).jpg">6.CORPIQ Règlements de immeubles (Français)</a></li><br>
+            <li style="float:left"><a target="_blank" href="public/assets/forms/Hydro Quebec Form (English).jpg">7.Hydro Quebec Form (English)</a></li><br>
+            <li style="float:left"><a href="public/assets/forms/Hydro Quebec Formulaire (Français).jpg">8.Hydro Quebec Formulaire (Français)</a></li><br><li style="float:left"><a href="public/assets/forms/Co signer Document (English).jpg">9.Co signer Document (English)</a></li><br><li style="float:left"><a href="public/assets/forms/Caution du Bail (Français).jpg">10.Caution du Bail (Français)</a></li><br><li style="float:left"><a href="public/assets/forms/Authorisation to communicate by Email (English).jpg">11.Authorisation to communicate by Email (English)</a></li><br><li style="float:left"><a href="public/assets/forms/Autorisation de communiquer par courriel (Français).jpg">12.Autorisation de communiquer par courriel (Français)</a></li><br>
+
+      
+          </ul>
+        </li>
+        {{#isAdmin}}
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Users<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a style="float:left"href="users">List of Users</a></li><br>
+            <li><a style="float:left"href="signup">Create New User</a></li><br>
+          </ul>
+        </li>
+        <!--<li><a href="/{{req.params.home_id}}/new">Edit Table</a></li>-->
+        <li>  <a href="/{{req.params.home_id}}/new">New</a></li>
+        {{/isAdmin}}
+      </ul>
+    </div>
+  </div>
+</nav>
+<!--edit by table-->
+<h1>{{req.current_home.header_title}}</h1>
+<h5><a href="https://www.revrentals.ca">Visit Website: WWW.REVRENTALS.CA</a></h5>
+
+<h4 style="font-weight: bold"><mark>List Of Vacant Apartment Update: {{lastUpdateDate}}</mark></h4>
+ 
+
+  <div class="container" id="tables">
+
+
+    <form class="form-inline">
+      
+    <!-- Sort By | Select Basic -->
+    <div class="form-group">
+        <select id="sortBy" name="sortBy" class="form-control">
+            <option value="">Sort By</option>
+            <option value="Address">Address</option>
+            <option value="Apt">Apt</option>
+            <option value="Size">Size</option>
+            <option value="Description">Description</option>
+            <option value="picture">Picture</option>
+            <option value="Price">Price</option>
+            <option value="date_of_availability">Date of Availability Contact</option>
+        </select>
+        <select id="sortDir" name="sortDir" class="form-control">
+            <option value="">Direction</option>
+            <option value="asc">↑ Asc</option>
+            <option value="desc">↓ Desc</option>
+        </select>
+        <button id="sortBtn" name="" class="btn btn-info">Sort</button>
+    </div>
+
+
+    </form>
+
+  <div class="table-responsive" style="background:white">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th style="font-style: bold">Address</th>
+        <th>Apt#</th>
+        <th>Size</th>
+        <th>Description</th>
+        <th>Picture</th>
+        <th>Price</th>
+        <th>Date of Availability</th>
+        <th>Contact</th>
+        {{#isAdmin}}
+          <th>Edit</th>
+        {{/isAdmin}}
+      </tr>
+    </thead>
+    <tbody>
+      {{#uploads}}
+        {{^hidden}}
+          <tr>
+            <td>{{Address}}</td>
+            <td>{{Apt}}</td>
+            <td>{{Size}}</td>
+            <td>{{Description}}</td>
+            <td>
+              {{#picture_uri}}
+              <a href="/{{req.current_home.id}}/uploads/{{id}}/view" title="View pictures">
+                <!-- <img class="img img-rounded" src="{{picture_uri}}" /> -->
+                <i class="fa fa-eye"></i>
+              </a>
+              {{/picture_uri}}
+            </td>
+            <td>${{Price}}</td>
+            <td>{{date_of_availability}}</td>
+            <td>{{contact}}</td>
+            {{#isAdmin}}
+              <th>
+                <a href="/{{req.params.home_id}}/uploads/{{id}}/edit">
+                  <i class="fas fa-pencil-alt"></i>
+                </a>
+                <a href="/{{req.params.home_id}}/uploads/{{id}}/delete">
+                  <i class="fa fa-times"></i>
+                </a>
+              </th>
+            {{/isAdmin}}
+           </tr>
+        {{/hidden}}
+      {{/uploads}}
+    </tbody>
+  </table>
+  </div>
+ 
+</div>
+
+<script>$('table').DataTable();</script>
+
+
+
+</body>
+</html>
