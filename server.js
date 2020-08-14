@@ -38,7 +38,7 @@ express()
     
     res.locals = {
  	 req,
-	isAdmin: req.user.is_admin || req.user.is_super_admin 
+	isAdmin: req.user && (req.user.is_admin || req.user.is_super_admin)
     }
     if(!req.cookies)
       res.cookie('revrentals', { httpOnly: true });
