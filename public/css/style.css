@@ -93,14 +93,6 @@ display:block;
 color:#222!important;
 }
 
-.navbar a {
-float:right;
-text-align:center;
-color:#FFF;
-text-decoration:none;
-font-size:15px;
-margin:5px;
-}
 
 table.dataTable.no-footer {
 border:none!important;
@@ -132,11 +124,6 @@ margin-bottom:0;
 vertical-align:0;
 }
 
-.nav li a:hover {
-background-color:#00004d;
-color:#FFF;
-font-size:15px;
-}
 
 #myNavbar {
 float:left;
@@ -169,20 +156,6 @@ border:1px solid #f1f1f1;
 margin-bottom:25px;
 }
 
-button {
-border:none;
-opacity:0.9;
-background-color:#4881ea;
-color:#FFF;
-cursor:pointer;
-width:100%;
-margin:8px 0;
-padding:14px 20px;
-}
-
-button:hover {
-opacity:0.8;
-}
 
 .form-control[type=text],input[type=password] {
 width:100%;
@@ -347,4 +320,13 @@ float:none;
 .cancelbtn,.signupbtn,.cancelbtn {
 width:100%;
 }
+}
+
+.p-4 {
+  padding: 40px;
+}
+
+
+img {
+max-width: 100%;
 }

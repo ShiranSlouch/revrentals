@@ -2,7 +2,7 @@
 <div class="container-center">
    <a href="/" onClick="history.back(); return false;">Back</a>
 	<% if (upload_item.picture) { %>
-	    <% pictures.forEach(picture => { %>
+	    <% upload_item.pictures.forEach(picture => { %>
               <div class="picture-item">
                 <img class="img img-rounded w-100" src="<%= picture.uri %>" title="<%= picture.title %>" data-name="<%= picture.title %>" />
               </div>

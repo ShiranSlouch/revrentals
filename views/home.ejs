@@ -1,13 +1,16 @@
-<%- include('partials/head') %>
+<%- include('partials/head', {
+  body_background_image: req.current_home.background_img
+}) %>
 <%- include('partials/navbar') %>
+<%- include('partials/navbar_menu') %>
 
 <!--edit by table-->
-<h1><%= req.current_home.header_title %></h1>
+<h1 id="home-heading"><%= req.current_home.header_title %></h1>
 <h5><a href="https://www.revrentals.ca">Visit Website: WWW.REVRENTALS.CA</a></h5>
 
 <h4 style="font-weight: bold"><mark>List Of Vacant Apartment Update: <%= lastUpdateDate %></mark></h4>
   <div class="container" id="tables">
-    <form class="form-inline">
+    <form class="form-inline hide">
       
     <!-- Sort By | Select Basic -->
     <div class="form-group">
@@ -49,7 +52,7 @@
     </thead>
     <tbody>
       <% uploads.forEach(upload => { %>
-	<% if (hidden) { return; } %>
+	<% if (upload.hidden) { return; } %>
         <tr>
           <td><%= upload.Address %></td>
           <td><%= upload.Apt %></td>
@@ -57,8 +60,8 @@
           <td><%= upload.Description %></td>
           <td>
             <% if (upload.picture_uri) { %>
-            <a href="/<%= req.current_home.id %>/uploads/<%= id %>/view" title="View pictures">
-              <!-- <img class="img img-rounded" src="<%= picture_uri %>" /> -->
+            <a href="/<%= req.current_home.id %>/uploads/<%= upload.id %>/view" title="View pictures">
+              <!-- <img class="img img-rounded" src="<%= upload.picture_uri %>" /> -->
               <i class="fa fa-eye"></i>
             </a>
             <% } %>
@@ -68,10 +71,10 @@
           <td><%= upload.contact %></td>
 	  <% if (isAdmin) { %>
             <th>
-              <a href="/<%= req.params.home_id %>/uploads/<%= id %>/edit">
+              <a href="/<%= req.params.home_id %>/uploads/<%= upload.id %>/edit">
                 <i class="fas fa-pencil-alt"></i>
               </a>
-              <a href="/<%= req.params.home_id %>/uploads/<%= id %>/delete">
+              <a href="/<%= req.params.home_id %>/uploads/<%= upload.id %>/delete">
                 <i class="fa fa-times"></i>
               </a>
             </th>

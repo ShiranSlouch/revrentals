@@ -1,6 +1,6 @@
 <%- include('partials/head') %>
-<div class="container-center">
-   <h4>Create</h4>
+<div class="container-center container">
+   <h4>Edit</h4>
    <p>Enter the details about the listing</p>
 
     <form method="post" enctype="multipart/form-data">
@@ -74,8 +74,8 @@
     <div class="form-group row">
         <label class="col-md-4 col-form-label" for="picture">Picture</label>
         <div class="col-md-8">
-	    <% if (upload_item.picture) %>
-  		<% pictures.forEach(picture => { %>
+	    <% if (upload_item.picture) { %>
+  		<% upload_item.pictures.forEach(picture => { %>
 			<div class="picture-edit-item">
 			  <img class="img img-rounded w-100" src="<%= picture.uri %>" title="<%= picture.title %>" data-name="<%= picture.title %>" />
 			  
@@ -159,7 +159,7 @@
     <div class="form-group row">
         <label class="col-md-4 col-form-label"></label>
         <div class="col-md-4">
-            <a href="/<%= upload_item.req.params.home_id %>" class="btn btn-secondary">Cancel</a>
+            <a href="/<%= req.params.home_id %>" class="btn btn-secondary">Cancel</a>
         <input type="submit" class="btn btn-primary" value="Update">
         </div>
     </div>
