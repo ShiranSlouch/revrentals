@@ -1,0 +1,36 @@
+<%- include('../../partials/head') %>
+<%- include('../../partials/navbar') %>
+<div class="container text-center p-4">
+    <a href="/fobs/buildings">
+        Buildings
+    </a> |
+    <a href="/fobs/buildings/<%= building_item.id %>/new-apartment">
+        New Apartment
+    </a>
+    <h2>Apartments of <i><%= building_item.address %></i></h2>
+
+    <div class="table-responsive" style="background:white">
+    <table class="table table-hover data-table">
+        <thead>
+          <tr>
+            <th>Apartment Number</th>
+            <th style="width:100px"></th>
+          </tr>
+        </thead>
+    <tbody>
+      <% apartments.forEach(apartment => { %>
+	   <% if (apartment.hidden) { return; } %>
+        <tr>
+          <td><%= apartment.number %></td>
+          <td>
+            <a class="btn btn-warning btn-xs" href="/fobs/buildings/<%= building_item.id %>/apartments/<%= apartment.id %>">
+              <i class="fas fa-pencil-alt"></i>
+            </a>
+          </td>
+         </tr>
+     <% }) %>
+    </tbody>
+  </table>
+  </div>
+</div>
+<%- include('../../partials/footer') %>

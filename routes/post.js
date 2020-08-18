@@ -156,10 +156,6 @@ router
     })
   })
 
-.get('/fobs', function(req, res){
-      res.render("fobs");
-  })
-
   // Display the listing (uploads table in the db) /home, /home_2, /whatever, /login
 .get(HOME_EXPRESS_ROUTE, getHome, checkAuthAndMaybeRedirect, function(req, res){
   db(req.current_home.uploads_table).then(uploads => {

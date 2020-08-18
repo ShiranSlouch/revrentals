@@ -6,6 +6,7 @@ const session = require("express-session")
 const connectSessionKnex = require("connect-session-knex")
 const passport = require("passport")
 const postsRoutes = require("./routes/post")
+const fobsRoutes = require("./routes/fobs")
 const authRoutes = require("./routes/auths")
 const uploadRoutes = require("./routes/upload")
 require("./passport")
@@ -45,6 +46,7 @@ express()
     next();
   })
   .use(postsRoutes)
+  .use(fobsRoutes)
   .use(authRoutes)
 
   
