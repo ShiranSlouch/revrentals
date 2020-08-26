@@ -74,16 +74,16 @@
     <div class="form-group row">
         <label class="col-md-4 col-form-label" for="picture">Picture</label>
         <div class="col-md-8">
-	    <% if (upload_item.picture) { %>
-  		<% upload_item.pictures.forEach(picture => { %>
-			<div class="picture-edit-item">
-			  <img class="img img-rounded w-100" src="<%= picture.uri %>" title="<%= picture.title %>" data-name="<%= picture.title %>" />
-			  
-			  <a href="<%= picture.uri %>">View Large</a>
-			  <a class="btn btn-xs btn-danger btn-delete-picture" href="#">Delete</a>
-			</div>
-		<% }) %>
-	    <% } %>
+        <% if (upload_item.picture) { %>
+        <% upload_item.pictures.forEach(picture => { %>
+            <div class="picture-edit-item">
+              <img class="img img-rounded w-100" src="<%= picture.uri %>" title="<%= picture.title %>" data-name="<%= picture.title %>" />
+
+              <a href="<%= picture.uri %>">View Large</a>
+              <a class="btn btn-xs btn-danger btn-delete-picture" href="#">Delete</a>
+            </div>
+        <% }) %>
+        <% } %>
             <input type="hidden" name="pictures" value="<%= upload_item.picture %>" />
             <div id="pictures-container">
               <div class="picture-item">
@@ -101,12 +101,11 @@
                     padding: 12px 0;
                 }
                 .picture-edit-item {
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin-bottom: 14px;
-    border-radius: 10px;
-}
-
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    margin-bottom: 14px;
+                    border-radius: 10px;
+                }
             </style>
             <script>
               // Logic for the picture items

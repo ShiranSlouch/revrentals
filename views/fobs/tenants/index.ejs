@@ -1,0 +1,42 @@
+<%- include('../../partials/head') %>
+<%- include('../../partials/navbar') %>
+<div class="container text-center p-4">
+    <a href="/fobs">« Go Back</a>
+    <a class="btn btn-success" href="/fobs/new-tenant">
+        Add Tenant
+    </a>
+    <h2>Tenants</h2>
+
+    <div class="table-responsive" style="background:white">
+    <table class="table table-hover data-table">
+        <thead>
+          <tr>
+            <th>Full Name</th>
+            <th>Email Address</th>
+            <th>Phone Number</th>
+            <th style="width:270px"></th>
+          </tr>
+        </thead>
+    <tbody>
+      <% tenants.forEach(tenant => { %>
+	   <% if (tenant.hidden) { return; } %>
+        <tr>
+          <td><%= tenant.full_name %></td>
+          <td><%= tenant.email %></td>
+          <td><%= tenant.phone_number %></td>
+
+          <td>
+              <div class="btn-group">
+              
+                <a class="btn btn-warning btn-xs" href="/fobs/tenants/<%= tenant.id %>">
+                  <i class="fas fa-pencil-alt"></i>
+                </a>
+              </div>
+          </td>
+         </tr>
+     <% }) %>
+    </tbody>
+  </table>
+  </div>
+</div>
+<%- include('../../partials/footer') %>

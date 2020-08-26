@@ -1,6 +1,9 @@
 <%- include('partials/head') %>
 <div class="container-center">
    <a href="/" onClick="history.back(); return false;">Back</a>
+    <% upload_item.picture = upload_item.picture || upload_item.attachment %>
+    <% upload_item.pictures = upload_item.pictures || upload_item.attachments %>
+
 	<% if (upload_item.picture) { %>
 	    <% upload_item.pictures.forEach(picture => { %>
               <div class="picture-item">

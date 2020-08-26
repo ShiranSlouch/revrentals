@@ -1,0 +1,248 @@
+<form class="form-horizontal" method="POST" <%- item.start_date ? "" : 'action="/fobs/new-history-log-item?redirect_to_after_post=/fobs/rentals"' %> enctype="multipart/form-data">
+<fieldset>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="building_id">Building</label>
+  <div class="col-md-5">
+      <script>
+        window._pageData.buildings = <%- JSON.stringify(buildings) %>
+      </script>
+    <select data-value="<%= item.building_id %>" id="building_id" name="building_id" class="form-control select-two-element">
+        <% buildings.forEach(item => { %>
+            <option value="<%= item.id %>"><%= item.address %></option>
+        <% }) %>
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="apartment_id">Apartment Number</label>
+  <div class="col-md-5">
+      <script>
+        window._pageData.apartments = <%- JSON.stringify(apartments) %>
+      </script>
+    <select data-value="<%= item.apartment_id %>" id="apartment_id" name="apartment_id" class="form-control select-two-element">
+        
+    </select>
+  </div>
+</div>
+
+<!-- Select Basic -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="tenant_id">Tenant</label>
+  <div class="col-md-5">
+    <select data-value="<%= item.tenant_id %>" id="tenant_id" name="tenant_id" class="form-control select-two-element">
+        <% tenants.forEach(item => { %>
+            <option value="<%= item.id %>"><%= item.full_name %> (<%= item.email %>, <%= item.phone_number %>)</option>
+        <% }) %>
+    </select>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="access_level">Access Level</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="access_level" name="access_levels"><%= item.access_levels %></textarea>
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="fobs">Fobs</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="fobs" name="fobs"><%= item.fobs %></textarea>
+      <span class="help-block">Enter one fob serial number per line.</span> 
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="keys">Keys</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="keys" name="access_keys"><%= item.access_keys %></textarea>
+      <span class="help-block">Enter one key serial number per line.</span> 
+  </div>
+</div>
+
+<!-- Textarea -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="remote_controllers">Remote Controllers</label>
+  <div class="col-md-4">                     
+    <textarea class="form-control" id="remote_controllers" name="remote_controllers"><%= item.remote_controllers %></textarea>
+      <span class="help-block">Enter one remote controller serial number per line.</span> 
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="start_date">Start Date</label>  
+  <div class="col-md-5">
+  <input id="start_date" name="start_date" type="date" placeholder="" class="default-today form-control input-md" required="">
+  <span class="help-block">The start date.</span>  
+  </div>
+</div>
+
+
+<% const itemEditing = !!item.start_date %>
+    
+<% if (itemEditing) { %>
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="end_date">End Date</label>  
+      <div class="col-md-5">
+      <input value="<%= item.end_date %>" id="end_date" name="end_date" type="date" placeholder="" class="form-control input-md">
+      <span class="help-block">The end date.</span>  
+      </div>
+    </div>
+
+    <!-- Select Basic -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="reasons">Reasons</label>
+      <div class="col-md-5">
+        <select data-value="<%= item.reasons %>" id="reasons" name="reasons" class="form-control select-two-element">
+          <option value="no_longer_tenant">No Longer Tenant</option>
+          <option value="lost">Lost</option>
+          <option value="stollen">Stollen</option>
+          <option value="broken">Broken</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Textarea -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="update_comments">Update Comments</label>
+      <div class="col-md-4">                     
+        <textarea class="form-control" id="update_comments" name="update_comments"><%= item.update_comments %></textarea>
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="reimbursement_date">Reimbursement Date</label>  
+      <div class="col-md-5">
+      <input value="<%= item.reimbursement_date %>" id="reimbursement_date" name="reimbursement_date" type="date" placeholder="" class="form-control input-md">
+      <span class="help-block">Enter the reimbursement date.</span>  
+      </div>
+    </div>
+<% } %>
+
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="check_number">Check Number</label>  
+  <div class="col-md-5">
+  <input value="<%= item.check_number %>" id="check_number" name="check_number" type="text" placeholder="" class="form-control input-md">
+  <span class="help-block">Enter the check number.</span>  
+  </div>
+</div>
+
+    <!-- Picture | File Button -->
+    <div class="form-group">
+        <label class="col-md-4 control-label" for="attachment">Attachments</label>
+        <div class="col-md-5">
+        <% if (item.attachment) { %>
+        <% item.attachments.forEach(picture => { %>
+            <div class="picture-edit-item">
+              <img class="img img-rounded w-100" src="<%= picture.uri %>" title="<%= picture.title %>" data-name="<%= picture.title %>" />
+
+              <a href="<%= picture.uri %>">View Large</a>
+              <a class="btn btn-xs btn-danger btn-delete-picture" href="#">Delete</a>
+            </div>
+        <% }) %>
+        <% } %>
+            <input type="hidden" name="attachments" value="<%= item.attachment %>" />
+            <div id="pictures-container">
+              <div class="picture-item">
+                <input name="attachment_1" class="input-file" type="file">
+                <a class="btn btn-xs btn-danger" href="#">&times;</a>
+              </div>
+            </div>
+            <a href="#" class="btn btn-success add-more-pictures">Upload More Pictures</a>
+            <style>
+              .picture-item > input {
+                    display: inline-block;
+                }
+
+                .picture-item {
+                    padding: 12px 0;
+                }
+                .picture-edit-item {
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    margin-bottom: 14px;
+                    border-radius: 10px;
+                }
+            </style>
+            <script>
+              // Logic for the picture items
+              (function () {
+                var PICTURE_SEPARATOR = "<%= PICTURE_SEPARATOR %>"
+                var $picContainer = $("#pictures-container")
+                var $picItemTemplate = $(".picture-item").clone()
+
+                $(".btn-delete-picture").click(function () {
+                  var $pic = $(this).closest(".picture-edit-item")
+                  $pic.remove();
+                  $("input[name='attachments']").val($("img[data-name]").map(function () {
+                    return $(this).data("name")
+                  }).toArray().join(PICTURE_SEPARATOR))
+                  return false;
+                })
+
+                function updateNames () {
+                  $(".picture-item").each(function (i) {
+                    $("input", this).attr("name", "attachments_" + (i + 1))
+                  })
+                }
+
+                // Delete picture items
+                $picContainer.on("click", ".btn-danger", function () {
+                  $(this).closest(".picture-item").remove()
+                  if (!$picContainer.children().length) {
+                    $picContainer.append($picItemTemplate.clone())
+                    updateNames();
+                  }
+                  return false;
+                })
+
+                // If we click the add more pictures, we add a new picture-element
+                // and open the select file dialog
+                $(".add-more-pictures").click(function () {
+                  var $picElm = $picItemTemplate.clone()
+                  $picContainer.append($picElm)
+                  updateNames();
+                  $("input", $picElm).click()
+                  return false;
+                })
+              })()
+            </script>
+        </div>
+    </div>
+
+<!-- Appended Input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="total_price">Total</label>
+  <div class="col-md-4">
+    <div class="input-group">
+      <input value="<%= item.total_price %>" id="total_price" name="total_price" class="form-control" placeholder="" type="text" readonly="readonly">
+      <span class="input-group-addon">$</span>
+    </div>
+    <p class="help-block">The deposit total.</p>
+  </div>
+</div>
+    
+  
+<!-- Button (Double) -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-8">
+    <button class="btn btn-success">Save</button>
+    <a href="/fobs/history-log" class="btn btn-warning">Cancel</a>
+  </div>
+</div>  
+    
+</fieldset>
+</form>

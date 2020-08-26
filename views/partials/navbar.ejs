@@ -1,18 +1,40 @@
-  <nav class="navbar" id="social">
-    <div class="hide-md-lg">
-    <a href="#" class='fab fa-linkedin-in'></a>
-    <a href="#" class='fab fa-instagram'></a>
-    <a href="#" class='fab fa-twitter'></a>
-    <a href="#" class='fab fa-facebook-f'></a>
-    <a href="mailto:revrentalsmtl@gmail.com?Subject=Hello%20again" class='far fa-envelope'"> revrentalsmtl@gmail.com</a>
-    <a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a>
-    <div class="navbar-header">
-      
-<% req.current_home = req.current_home || {} %>
-      <a href="menu" class="navbar-left" >
-        <img src="<%= req.current_home.logo_uri || "/public/images/logos/Rev-Rentals-logo-page-001.jpg" %>">
-      </a>
-    </div>
-     <li class="navbar-nav navbar-left"><a href="/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-   </div>
-  </nav>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#top-navbar-inverse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <% req.current_home = req.current_home || {} %>
+            <a href="/menu" class="navbar-brand" >
+                <img src="<%= req.current_home.logo_uri || "/public/images/logos/Rev-Rentals-logo-page-001.jpg" %>">
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="top-navbar-inverse">
+            <ul class="nav navbar-nav hide">
+                <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Link</a></li>
+            </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                
+                <li><a href="#" class='fab fa-linkedin-in'></a></li>
+                <li><a href="#" class='fab fa-instagram'></a></li>
+                <li><a href="#" class='fab fa-twitter'></a></li>
+                <li><a href="#" class='fab fa-facebook-f'></a></li>
+                <li><a href="mailto:revrentalsmtl@gmail.com?Subject=Hello%20again" class="far fa-envelope">revrentalsmtl@gmail.com</a></li>
+                <li><a class='fas fa-phone-volume' href="tel:(514) 545-2172">(514) 545-2172</a></li>
+
+                <li>
+                    <a href="/logout">
+                        <span class="glyphicon glyphicon-log-in"></span> Logout
+                    </a>
+                </li>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>

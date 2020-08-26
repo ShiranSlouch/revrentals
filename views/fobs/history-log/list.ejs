@@ -1,0 +1,58 @@
+
+
+<div class="table-responsive" style="background:white">
+    <table class="table table-hover data-table" style="">
+        <thead>
+          <tr style="background-color: #F8F8FF">
+            <th>#</th>
+		<th>Access Levels</th>
+		<th>Fobs</th>
+		<th>Access Keys</th>
+		<th>Remote Controllers</th>
+		<th>Start Date</th>
+		<th>End Date</th>
+		<th>Reasons</th>
+		<th>Update Comments</th>
+		<th>Total Price</th>
+		<th>Reimbursement Date</th>
+		<th>Check Number</th>
+		<th>Attachments</th>
+		<th>Building Address @ Apartment</th>
+		<th>Tenant</th>
+            <th style="width:100px"></th>
+          </tr>
+        </thead>
+    <tbody>
+      <% historyLogItems.forEach(item => { %>
+        <tr>
+          <td><%= item.id %></td>
+	  <td><%= item.access_levels %></td>
+	  <td><%= item.fobs %></td>
+	  <td><%= item.access_keys %></td>
+	  <td><%= item.remote_controllers %></td>
+	  <td><%= item.start_date %></td>
+	  <td><%= item.end_date %></td>
+	  <td><%= item.reasons %></td>
+	  <td><%= item.update_comments %></td>
+	  <td>$<%= item.total_price %></td>
+	  <td><%= item.reimbursement_date %></td>
+	  <td><%= item.check_number %></td>
+      <td>
+        <% if (item.attachment) { %>
+        <a href="/fobs/history-log/<%= item.id %>/attachments" title="View pictures">
+          <i class="fa fa-eye"></i>
+        </a>
+        <% } %>
+      </td>
+	  <td><%= item.building_address %> @ <%= item.apartment_number %></td>
+	  <td><%= item.tenant_full_name %> / <%= item.tenant_email %> / <%= item.tenant_phone_number %></td>
+          <td>
+            <a class="btn btn-danger btn-xs" href="/fobs/history-log/<%= item.id %>">
+              <i class="fas fa-pencil-alt"></i> End Rental
+            </a>
+          </td>
+         </tr>
+     <% }) %>
+    </tbody>
+  </table>
+  </div>
