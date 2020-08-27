@@ -34,6 +34,10 @@ $(function () {
         return local.toJSON().slice(0,10);
     }
 
-    $("input[type='date'].default-today").val(todayDate())
+    $("input[type='date'].default-today").each(function () {
+        if (!this.value) {
+            $(this).val(todayDate())
+        }
+    })
     $(".select-two-element").select2()
 })

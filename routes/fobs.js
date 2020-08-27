@@ -20,7 +20,7 @@ const fileStorage = multer.diskStorage({
     cb(null, HISTORY_LOG_UPLOADS)
   },
   filename: function (req, file, cb) {
-    const splits = file.originalname.split(".")  
+    const splits = file.originalname.split(".")
     const ext = splits.slice(-1)[0]
     const fileNameWithoutExt = splits.slice(0, -1).join("_")
     const fileName = `${fileNameWithoutExt}-${Date.now()}.${ext}`
@@ -36,7 +36,7 @@ const fileStorage = multer.diskStorage({
     } else {
       req.body.attachment = fileName
     }
-    
+
     cb(null, fileName)
   }
 })
@@ -48,11 +48,11 @@ const fetchHistoryLogItems = all => {
       .join("buildings", "buildings.id", "=", "access_devices_history_log.building_id")
       .join("apartments", "apartments.id", "=", "access_devices_history_log.apartment_id")
       .join("tenants", "tenants.id", "=", "access_devices_history_log.tenant_id")
-    
+
     if (!all) {
         query = query.where("access_devices_history_log.end_date", null)
     }
-      
+
     return query.select(
         "access_devices_history_log.id",
         "access_devices_history_log.access_levels",
@@ -123,7 +123,7 @@ router.get('/fobs/new-building', adminOrSuperadminRequired, (req, res) => {
         res.redirect("/fobs/buildings")
     }).catch(next)
 })
-    
+
 const NOT_FOUND_ERROR = new Error("Page not found.")
 NOT_FOUND_ERROR.statusCode = 404
 
@@ -134,7 +134,7 @@ router.use('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res,
         if (!buildingItem) {
             return next(NOT_FOUND_ERROR)
         }
-        
+
         req.building_item = buildingItem
         res.locals.building_item = buildingItem
         res.locals.item = buildingItem
@@ -145,7 +145,7 @@ router.use('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res,
 // EDIT Buildings
 router.get('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res) => {
   res.render("fobs/buildings/edit");
-})  
+})
 
 // UPDATE Building by ID
 router.post('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res, next) => {
@@ -153,7 +153,7 @@ router.post('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res
   db("buildings").where("id", req.params.building_id).update(req.body).then(() => {
     res.redirect(`/fobs/buildings`)
   }).catch(next)
-})  
+})
 
 // DELETE Building (Confirmation) by id
 router.get('/fobs/buildings/:building_id/delete', adminOrSuperadminRequired, (req, res) => {
@@ -190,7 +190,7 @@ router.get('/fobs/new-tenant', adminOrSuperadminRequired, (req, res) => {
         res.redirect(req.query.redirect_to_after_post || "/fobs/tenants")
     }).catch(next)
 })
-    
+
 
 // GET Tenant by ID
 router.use('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, next) => {
@@ -199,7 +199,7 @@ router.use('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, nex
         if (!tenantItem) {
             return next(NOT_FOUND_ERROR)
         }
-        
+
         req.tenant_item = tenantItem
         res.locals.tenant_item = tenantItem
         res.locals.item = tenantItem
@@ -210,7 +210,7 @@ router.use('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, nex
 // EDIT Tenants
 router.get('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res) => {
   res.render("fobs/tenants/edit");
-})  
+})
 
 // UPDATE Tenant by ID
 router.post('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, next) => {
@@ -218,7 +218,7 @@ router.post('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, ne
   db("tenants").where("id", req.params.tenant_id).update(req.body).then(() => {
     res.redirect(`/fobs/tenants`)
   }).catch(next)
-}) 
+})
 
 // DELETE Tenant (Confirmation) by id
 router.get('/fobs/tenants/:tenant_id/delete', adminOrSuperadminRequired, (req, res) => {
@@ -271,7 +271,7 @@ router.use('/fobs/buildings/:building_id/apartments/:apartment_id', adminOrSuper
 // EDIT Apartments
 router.get('/fobs/buildings/:building_id/apartments/:apartment_id', adminOrSuperadminRequired, (req, res) => {
   res.render("fobs/apartments/edit");
-})  
+})
 
 // UPDATE Apartment by ID
 router.post('/fobs/buildings/:building_id/apartments/:apartment_id', adminOrSuperadminRequired, (req, res, next) => {
@@ -354,11 +354,11 @@ router.use('/fobs/history-log/:item_id', adminOrSuperadminRequired, fetchFobsDat
         if (!historyLogItem) {
             return next(NOT_FOUND_ERROR)
         }
-        
+
         historyLogItem.attachment = historyLogItem.attachment || "";
         historyLogItem.attachments = historyLogItem.attachment.split(PICTURE_SEPARATOR).map(src => ({ title: src, uri: `/fobs/history-log-uploads/${src}` }))
         historyLogItem.attachment_uri = (historyLogItem.attachments[0] || { uri: "" }).uri
-        
+
         req.history_log_item = historyLogItem
         res.locals.item = historyLogItem
         next()
@@ -370,7 +370,7 @@ router.get('/fobs/history-log/:item_id', adminOrSuperadminRequired, (req, res) =
   res.render("fobs/history-log/edit", {
       PICTURE_SEPARATOR
   });
-})  
+})
 
 // UPDATE HL Item by ID
 router.post('/fobs/history-log/:item_id', adminOrSuperadminRequired, uploadFile.fields(MULTER_FIELDS), function (req, res, next) {
@@ -389,7 +389,7 @@ router.post('/fobs/history-log/:item_id', adminOrSuperadminRequired, uploadFile.
   db("access_devices_history_log").where("id", req.params.item_id).update(req.body).then(() => {
     res.redirect(req.query.redirect_to_after_post || `/fobs/history-log`)
   }).catch(next)
-})  
+})
 
 router.get(`/fobs/history-log/:item_id/attachments`, adminOrSuperadminRequired, function (req, res) {
   res.render("upload_view", {
@@ -401,5 +401,5 @@ router.get(`/fobs/history-log/:item_id/attachments`, adminOrSuperadminRequired, 
 
 // Access History Log uploads
 router.use("/fobs/history-log-uploads", adminOrSuperadminRequired, express.static(HISTORY_LOG_UPLOADS))
-            
+
 module.exports = router

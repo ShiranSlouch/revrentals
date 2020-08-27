@@ -17,6 +17,7 @@ const connectSession = require('connect-session')
 const path = require('path');
 const DatabaseManager = require("./db")
 const KnexSessionStore = connectSessionKnex(session);
+const moment = require("moment")
 
 express()
 
@@ -28,18 +29,19 @@ express()
     store: new KnexSessionStore({
       knex: DatabaseManager.get()
     }),
-    secret: "i love dogs", 
-    resave: false, 
+    secret: "i love dogs",
+    resave: false,
     // store: sessionStore,
      saveUninitialized: false }))
 
   .use(passport.initialize())
   .use(passport.session())
   .use((req, res, next) => {
-    
+
     res.locals = {
- 	 req,
-	isAdmin: req.user && (req.user.is_admin || req.user.is_super_admin)
+ 	req,
+	isAdmin: req.user && (req.user.is_admin || req.user.is_super_admin),
+        moment
     }
     if(!req.cookies)
       res.cookie('revrentals', { httpOnly: true });
@@ -49,7 +51,7 @@ express()
   .use(fobsRoutes)
   .use(authRoutes)
 
-  
+
   .use('/public', express.static(path.join(__dirname, 'public')))
   .use(fileUpload()) // configure fileupload
 
