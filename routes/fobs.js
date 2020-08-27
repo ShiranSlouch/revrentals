@@ -155,11 +155,21 @@ router.post('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res
   }).catch(next)
 })  
 
+// DELETE Building (Confirmation) by id
+router.get('/fobs/buildings/:building_id/delete', adminOrSuperadminRequired, (req, res) => {
+    res.render("fobs/buildings/delete");
+}).post('/fobs/buildings/:building_id/delete', (req, res) => {
+    db("buildings").where("id", req.params.building_id).delete().then(() => {
+        res.redirect(`/fobs/buildings`)
+    })
+})
 
 
 
 
-// LIST Buildings
+
+
+// LIST Tenants
 router.get('/fobs/tenants', adminOrSuperadminRequired, (req, res, next) => {
     db("tenants").then(tenants => {
         res.render("fobs/tenants", {
@@ -182,7 +192,7 @@ router.get('/fobs/new-tenant', adminOrSuperadminRequired, (req, res) => {
 })
     
 
-// GET Building by ID
+// GET Tenant by ID
 router.use('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, next) => {
     db("tenants").where("id", req.params.tenant_id).then(tenantItem => {
         tenantItem = tenantItem[0]
@@ -197,18 +207,28 @@ router.use('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, nex
     }).catch(next)
 })
 
-// EDIT Buildings
+// EDIT Tenants
 router.get('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res) => {
   res.render("fobs/tenants/edit");
 })  
 
-// UPDATE Building by ID
+// UPDATE Tenant by ID
 router.post('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, next) => {
   req.body.updated_at = new Date()
   db("tenants").where("id", req.params.tenant_id).update(req.body).then(() => {
     res.redirect(`/fobs/tenants`)
   }).catch(next)
 }) 
+
+// DELETE Tenant (Confirmation) by id
+router.get('/fobs/tenants/:tenant_id/delete', adminOrSuperadminRequired, (req, res) => {
+    res.render("fobs/tenants/delete");
+}).post('/fobs/tenants/:tenant_id/delete', (req, res) => {
+    db("tenants").where("id", req.params.tenant_id).delete().then(() => {
+        res.redirect(`/fobs/tenants`)
+    })
+})
+
 
 
 
@@ -262,7 +282,7 @@ router.post('/fobs/buildings/:building_id/apartments/:apartment_id', adminOrSupe
   }).catch(next)
 })
 
-// DELETE Building (Confirmation) by id
+// DELETE Apartment (Confirmation) by id
 router.get('/fobs/buildings/:building_id/apartments/:apartment_id/delete', adminOrSuperadminRequired, (req, res) => {
     res.render("fobs/apartments/delete");
 }).post('/fobs/buildings/:building_id/apartments/:apartment_id/delete', (req, res) => {

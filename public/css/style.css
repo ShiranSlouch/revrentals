@@ -29,6 +29,8 @@ width:100%;
 margin:0;
 padding:30px;
 }
+.container-fluid {
+}
 
 table {
 border-collapse:collapse;
@@ -186,6 +188,7 @@ display:table;
 padding-top:0;
 min-height:33px;
 padding-bottom:0;
+margin-bottom: 0;
 border:0;
 border-radius:0;
 font-size:15px;
