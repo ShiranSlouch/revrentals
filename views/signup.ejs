@@ -11,13 +11,13 @@
 
     <label for="last_name"><b>Last name</b></label>
     <input type="text" placeholder="Enter Last name" name="last_name" required>
-  
-  
+
+
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="username" required>
 
-   
+
     <label for="password"><b>Password</b></label>
     <input type="password" placeholder="Enter Password" name="password" required>
 
@@ -41,12 +41,12 @@
    <div class="form-group">
       <label for="sel1">Permission</label>
       <select class="form-control" style=" background-color: #ddd;" name="type">
-        <option value="0" <%= admin.is_employee %>>Agent</option>
-        <option class="form-control" value="1" <%= admin.is_admin %>>Admin</option>
-        <option class="form-control" value="2" <%= admin.super_admin %>>Super Admin</option>
+        <option value="0">Agent</option>
+        <option class="form-control" value="1">Admin</option>
+        <option class="form-control" value="2">Super Admin</option>
       </select>
     </div>
-    
+
 <!--
     <label>
       <input type="checkbox" name="buildings[]" value="pl" style="margin-bottom:15px">Les Pavillons LaSalle
@@ -63,13 +63,13 @@
       <input type="checkbox" name="super_admin" style="margin-bottom:15px"> Mark if Super admin
     </label>
 -->
-    
+
 
     <div class="clearfix">
       <button type="button" class="cancelbtn">Cancel</button>
       <button type="submit" class="signupbtn">Sign Up</button>
     </div>
   </div>
-</form> 
+</form>
 
 <%- include('partials/footer') %>

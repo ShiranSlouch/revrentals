@@ -1,3 +1,5 @@
+<% const itemEditing = !!item.start_date %>
+
 <form class="form-horizontal" method="POST" <%- item.start_date ? "" : 'action="/fobs/new-history-log-item?redirect_to_after_post=/fobs/rentals"' %> enctype="multipart/form-data">
 <fieldset>
 
@@ -8,7 +10,7 @@
       <script>
         window._pageData.buildings = <%- JSON.stringify(buildings) %>
       </script>
-    <select data-value="<%= item.building_id %>" id="building_id" name="building_id" class="form-control select-two-element">
+    <select data-value="<%= item.building_id %>" id="building_id" name="building_id" class="form-control select-two-element" <%= itemEditing ? "disabled" : "" %>>
         <% buildings.forEach(item => { %>
             <option value="<%= item.id %>"><%= item.address %></option>
         <% }) %>
@@ -23,8 +25,8 @@
       <script>
         window._pageData.apartments = <%- JSON.stringify(apartments) %>
       </script>
-    <select data-value="<%= item.apartment_id %>" id="apartment_id" name="apartment_id" class="form-control select-two-element">
-        
+    <select data-value="<%= item.apartment_id %>" id="apartment_id" name="apartment_id" class="form-control select-two-element" <%= itemEditing ? "disabled" : "" %>>
+
     </select>
   </div>
 </div>
@@ -33,7 +35,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="tenant_id">Tenant</label>
   <div class="col-md-5">
-    <select data-value="<%= item.tenant_id %>" id="tenant_id" name="tenant_id" class="form-control select-two-element">
+    <select data-value="<%= item.tenant_id %>" id="tenant_id" name="tenant_id" class="form-control select-two-element" <%= itemEditing ? "disabled" : "" %>>
         <% tenants.forEach(item => { %>
             <option value="<%= item.id %>"><%= item.full_name %> (<%= item.email %>, <%= item.phone_number %>)</option>
         <% }) %>
@@ -44,57 +46,55 @@
 <!-- Textarea -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="access_level">Access Level</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="access_level" name="access_levels"><%= item.access_levels %></textarea>
+  <div class="col-md-4">
+    <textarea class="form-control" id="access_level" name="access_levels" <%= itemEditing ? "disabled" : "" %>><%= item.access_levels %></textarea>
   </div>
 </div>
 
 <!-- Textarea -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="fobs">Fobs</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="fobs" name="fobs"><%= item.fobs %></textarea>
-      <span class="help-block">Enter one fob serial number per line.</span> 
+  <div class="col-md-4">
+    <textarea class="form-control" id="fobs" name="fobs" <%= itemEditing ? "disabled" : "" %>><%= item.fobs %></textarea>
+      <span class="help-block">Enter one fob serial number per line.</span>
   </div>
 </div>
 
 <!-- Textarea -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="keys">Keys</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="keys" name="access_keys"><%= item.access_keys %></textarea>
-      <span class="help-block">Enter one key serial number per line.</span> 
+  <div class="col-md-4">
+    <textarea class="form-control" id="keys" name="access_keys" <%= itemEditing ? "disabled" : "" %>><%= item.access_keys %></textarea>
+      <span class="help-block">Enter one key serial number per line.</span>
   </div>
 </div>
 
 <!-- Textarea -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="remote_controllers">Remote Controllers</label>
-  <div class="col-md-4">                     
-    <textarea class="form-control" id="remote_controllers" name="remote_controllers"><%= item.remote_controllers %></textarea>
-      <span class="help-block">Enter one remote controller serial number per line.</span> 
+  <div class="col-md-4">
+    <textarea class="form-control" id="remote_controllers" name="remote_controllers" <%= itemEditing ? "disabled" : "" %>><%= item.remote_controllers %></textarea>
+      <span class="help-block">Enter one remote controller serial number per line.</span>
   </div>
 </div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="start_date">Start Date</label>  
+  <label class="col-md-4 control-label" for="start_date">Start Date</label>
   <div class="col-md-5">
-  <input id="start_date" name="start_date" type="date" placeholder="" class="default-today form-control input-md" required="">
-  <span class="help-block">The start date.</span>  
+      <input value="<%= item.start_date ? moment(item.start_date).format("YYYY-MM-DD") : "" %>" id="start_date" name="start_date" type="date" min="<%= moment().format("YYYY-MM-DD") %>" class="default-today form-control input-md" required="" <%= itemEditing ? "disabled" : "" %>>
+      <span class="help-block">The start date.</span>
   </div>
 </div>
 
 
-<% const itemEditing = !!item.start_date %>
-    
 <% if (itemEditing) { %>
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="end_date">End Date</label>  
+      <label class="col-md-4 control-label" for="end_date">End Date</label>
       <div class="col-md-5">
-      <input value="<%= item.end_date %>" id="end_date" name="end_date" type="date" placeholder="" class="form-control input-md">
-      <span class="help-block">The end date.</span>  
+      <input value="<%= item.end_date %>" id="end_date" name="end_date" type="date" min="<%= moment(item.start_date).add(1, "day").format("YYYY-MM-DD") %>" placeholder="" class="form-control input-md default-today">
+      <span class="help-block">The end date.</span>
       </div>
     </div>
 
@@ -114,17 +114,17 @@
     <!-- Textarea -->
     <div class="form-group">
       <label class="col-md-4 control-label" for="update_comments">Update Comments</label>
-      <div class="col-md-4">                     
+      <div class="col-md-4">
         <textarea class="form-control" id="update_comments" name="update_comments"><%= item.update_comments %></textarea>
       </div>
     </div>
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="reimbursement_date">Reimbursement Date</label>  
+      <label class="col-md-4 control-label" for="reimbursement_date">Reimbursement Date</label>
       <div class="col-md-5">
-      <input value="<%= item.reimbursement_date %>" id="reimbursement_date" name="reimbursement_date" type="date" placeholder="" class="form-control input-md">
-      <span class="help-block">Enter the reimbursement date.</span>  
+      <input value="<%= item.reimbursement_date %>" id="reimbursement_date" name="reimbursement_date" type="date" min="<%= moment(item.start_date).add(1, "day").format("YYYY-MM-DD") %>" placeholder="" class="form-control input-md default-today">
+      <span class="help-block">Enter the reimbursement date.</span>
       </div>
     </div>
 <% } %>
@@ -132,10 +132,10 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="check_number">Check Number</label>  
+  <label class="col-md-4 control-label" for="check_number">Check Number</label>
   <div class="col-md-5">
   <input value="<%= item.check_number %>" id="check_number" name="check_number" type="text" placeholder="" class="form-control input-md">
-  <span class="help-block">Enter the check number.</span>  
+  <span class="help-block">Enter the check number.</span>
   </div>
 </div>
 
@@ -233,8 +233,8 @@
     <p class="help-block">The deposit total.</p>
   </div>
 </div>
-    
-  
+
+
 <!-- Button (Double) -->
 <div class="form-group">
   <label class="col-md-4 control-label"></label>
@@ -242,7 +242,7 @@
     <button class="btn btn-success">Save</button>
     <a href="/fobs/history-log" class="btn btn-warning">Cancel</a>
   </div>
-</div>  
-    
+</div>
+
 </fieldset>
 </form>

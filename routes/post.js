@@ -49,7 +49,7 @@ const HIDDEN_HOME = {
 Object.keys(HOMES).forEach(function (homeId) {
   const table = db(HOMES[homeId].uploads_table)
   HOMES[homeId].id = homeId
-  
+
   table.where("Address", HIDDEN_HOME.Address).then(found => {
     if (!found.length) {
       return table.insert(HIDDEN_HOME).then(() => {
@@ -97,7 +97,7 @@ const fileStorage = multer.diskStorage({
     cb(null, path.resolve(PATH_UPLOADS, folder))
   },
   filename: function (req, file, cb) {
-    const splits = file.originalname.split(".")  
+    const splits = file.originalname.split(".")
     const ext = splits.slice(-1)[0]
     const fileNameWithoutExt = splits.slice(0, -1).join("_")
     const fileName = `${fileNameWithoutExt}-${Date.now()}.${ext}`
@@ -112,7 +112,7 @@ const fileStorage = multer.diskStorage({
     } else {
       req.body.picture = fileName
     }
-    
+
     cb(null, fileName)
   }
 })
@@ -188,13 +188,13 @@ router
       uploads,
       lastUpdateDate: moment(lastUpdateDate).format("LLL")
     });
-  })  
+  })
 })
 .get(`${HOME_EXPRESS_ROUTE}/new`, getHome, adminOrSuperadminRequired, function (req, res) {
   res.render("upload_create", { req })
 })
 .post(`${HOME_EXPRESS_ROUTE}/new`, getHome, adminOrSuperadminRequired, uploadFile.fields(MULTER_FIELDS), function (req, res, next) {
-  
+
   // Set null if the body fields are empty
  Object.keys(req.body).forEach(c => { if (!req.body[c]) delete req.body[c] })
 
@@ -233,7 +233,7 @@ router
   delete req.body.id
   // Set null if the body fields are empty
   Object.keys(req.body).forEach(c => { if (!req.body[c] && c !== "picture") delete req.body[c] })
-  
+
   db(req.current_home.uploads_table).where("id", req.params.id).update(req.body).then(() => {
     res.redirect(`/${req.params.home_id}`)
   }).catch(next)
@@ -247,7 +247,6 @@ router
 })
 // Post the delete page
 .post(`${HOME_EXPRESS_ROUTE}/uploads/:id/delete`, getHome, adminOrSuperadminRequired, getUploadById, function (req, res, next) {
-   
   db(req.current_home.uploads_table).where("Address", HIDDEN_HOME.Address).update({
     updated_at: new Date()
   }).then(() => {
@@ -255,7 +254,6 @@ router
   }).then(() => {
     res.redirect(`/${req.params.home_id}`)
   }).catch(next)
-  
 })
 
 
