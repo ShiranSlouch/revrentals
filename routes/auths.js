@@ -36,16 +36,13 @@ function adminRequired(req, res, next) {
 
 
 router
-
-
-  
   // The form to enter the email
   .get("/login/forgot-password", (req, res, next) => {
     res.render("forgot_password")
   })
   // When submitting the form, we need to send the reset link email
   .post("/login/forgot-password", async (req, res, next) => {
-    
+
      const db = DatabaseManager.get();
      const user = (await db("users").where({
       email: req.body.email
@@ -97,7 +94,7 @@ router
 
      if (user) {
        const db = DatabaseManager.get();
-       
+
         await db("users").where({
           id: user.id
         }).update({
@@ -113,7 +110,7 @@ router
   .get("/login", (req, res, next) => {
     res.render("login")
   })
-  .post("/login", 
+  .post("/login",
     (req, res, next) => {
      // console.log('Setting cookie to: ', req.params.revrentals);
       res.cookie('revrentals', + req.params.revrentals, { httpOnly: true });
@@ -171,13 +168,13 @@ router
 })
 
   .get("/edit-user/:id", loginRequired, adminRequired, async(req, res, next) => {
-    
+
     try {
       const user = await db("users")
         .where("id", req.params.id)
         .first();
 
-      
+
       if(!user){
          return next(new Error('user does not exist'))
       }
@@ -188,7 +185,7 @@ router
         is_admin: user.type == 1 ? 'selected' : '',
       };
 
-             
+
       res.render("edit-user", { user, admin });
 
     } catch(e) {
@@ -198,7 +195,7 @@ router
   })
 
   .post("/edit-user", loginRequired, adminRequired, (req, res, next) => {
-    
+
     const query = db("users").where("id", req.body.id)
 
     if (req.body.password) {
@@ -226,5 +223,5 @@ router
       })
       .catch(next)
   })
-  
+
 module.exports = router
