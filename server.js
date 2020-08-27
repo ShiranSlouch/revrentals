@@ -57,6 +57,6 @@ express()
 
 
 
-  .listen(8888, () => {
-    console.log(`Server running on port:8888`);
+  .listen(process.env.PORT || 8888, () => {
+    console.log(`Server running on port:` + (process.env.PORT || 8888));
 })
