@@ -116,7 +116,7 @@ router.get('/fobs/new-building', adminOrSuperadminRequired, (req, res) => {
     res.render("fobs/buildings/new", {
         item: {}
     });
-}).post('/fobs/new-building', (req, res, next) => {
+}).post('/fobs/new-building', adminOrSuperadminRequired, (req, res, next) => {
     req.body.updated_at = new Date()
     req.body.created_at = new Date()
     db("buildings").insert(req.body).then(() => {
@@ -158,7 +158,7 @@ router.post('/fobs/buildings/:building_id', adminOrSuperadminRequired, (req, res
 // DELETE Building (Confirmation) by id
 router.get('/fobs/buildings/:building_id/delete', adminOrSuperadminRequired, (req, res) => {
     res.render("fobs/buildings/delete");
-}).post('/fobs/buildings/:building_id/delete', (req, res) => {
+}).post('/fobs/buildings/:building_id/delete', adminOrSuperadminRequired, (req, res) => {
     db("buildings").where("id", req.params.building_id).delete().then(() => {
         res.redirect(`/fobs/buildings`)
     })
@@ -183,7 +183,7 @@ router.get('/fobs/new-tenant', adminOrSuperadminRequired, (req, res) => {
     res.render("fobs/tenants/new", {
         item: {}
     });
-}).post('/fobs/new-tenant', (req, res, next) => {
+}).post('/fobs/new-tenant', adminOrSuperadminRequired, (req, res, next) => {
     req.body.updated_at = new Date()
     req.body.created_at = new Date()
     db("tenants").insert(req.body).then(() => {
@@ -223,7 +223,7 @@ router.post('/fobs/tenants/:tenant_id', adminOrSuperadminRequired, (req, res, ne
 // DELETE Tenant (Confirmation) by id
 router.get('/fobs/tenants/:tenant_id/delete', adminOrSuperadminRequired, (req, res) => {
     res.render("fobs/tenants/delete");
-}).post('/fobs/tenants/:tenant_id/delete', (req, res) => {
+}).post('/fobs/tenants/:tenant_id/delete', adminOrSuperadminRequired, (req, res) => {
     db("tenants").where("id", req.params.tenant_id).delete().then(() => {
         res.redirect(`/fobs/tenants`)
     })
@@ -245,7 +245,7 @@ router.get('/fobs/buildings/:building_id/apartments', adminOrSuperadminRequired,
 // New apartment
 router.get('/fobs/buildings/:building_id/new-apartment', adminOrSuperadminRequired, (req, res, next) => {
     res.render("fobs/apartments/new");
-}).post('/fobs/buildings/:building_id/new-apartment', (req, res, next) => {
+}).post('/fobs/buildings/:building_id/new-apartment', adminOrSuperadminRequired, (req, res, next) => {
     req.body.updated_at = new Date()
     req.body.created_at = new Date()
     req.body.building_id = req.params.building_id
@@ -381,7 +381,16 @@ router.post('/fobs/history-log/:item_id', adminOrSuperadminRequired, uploadFile.
     }
 
     delete req.body.attachments
-
+    
+    req.body.update_comments = req.body.update_comments.trim().replace(/\r/g, "")
+    if (req.body.update_comments !== res.locals.item.update_comments.trim().replace(/\r/g, "")) {
+        req.body.update_comments += "\n" + [
+            "------------",
+            "Edited at: " + moment().format("LLL"),
+            "------------"
+        ].join("\n")
+    }
+    
     next()
 
 }, (req, res, next) => {

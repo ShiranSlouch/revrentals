@@ -131,7 +131,7 @@ router
       })
   })
 
-  .get("/signup",(req, res, next) => {
+  .get("/signup", loginRequired, adminRequired, (req, res, next) => {
 
     res.render("signup")
 

@@ -33,7 +33,11 @@
 	  <td><%= formatDate(item.start_date) %></td>
 	  <td><%= formatDate(item.end_date) %></td>
 	  <td><span class="badge"><%= item.reasons %></span></td>
-	  <td><%= item.update_comments %></td>
+	  <td>
+        <% if (item.update_comments) { %>
+            <pre><%= item.update_comments %></pre>
+        <% } %>
+      </td>
 	  <td>$<%= item.total_price %></td>
 	  <td><%= formatDate(item.reimbursement_date) %></td>
 	  <td><%= item.check_number %></td>
@@ -48,8 +52,11 @@
 	  <td><%= item.tenant_full_name %> / <%= item.tenant_email %> / <%= item.tenant_phone_number %></td>
           <td>
             <% if (!item.end_date) { %>
-                <a class="btn btn-danger btn-xs" href="/fobs/history-log/<%= item.id %>">
-                  <i class="fas fa-pencil-alt"></i> End Rental
+                <a class="btn btn-warning btn-xs" href="/fobs/history-log/<%= item.id %>">
+                  <i class="fas fa-pencil-alt"></i> Edit
+                </a>
+              <a class="btn btn-danger btn-xs" href="/fobs/history-log/<%= item.id %>?edit_type=end-rental">
+                  <i class="fas fa-stop-circle"></i> End Rental
                 </a>
             <% } %>
           </td>
