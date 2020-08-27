@@ -4,7 +4,8 @@ const databases = {};
 
 class DatabaseManager {
 
-	static get(key = 'revrentals') {
+	static get(key) {
+            key = key || process.env.MYSQL_DBNAME || 'revrentals'
 
 		if(!databases[key]) {
 			databases[key] = knex({
