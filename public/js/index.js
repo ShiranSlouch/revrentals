@@ -35,8 +35,9 @@ $(function () {
     }
 
     $("input[type='date'].default-today").each(function () {
-        if (!this.value) {
-            $(this).val(todayDate())
+        const $this = $(this)
+        if (!$this.val()) {
+            $this.val($this.attr("min") || todayDate())
         }
     })
     $(".select-two-element").select2()

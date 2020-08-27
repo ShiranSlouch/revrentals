@@ -82,7 +82,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="start_date">Start Date</label>
   <div class="col-md-5">
-      <input id="start_date" name="start_date" type="date" min="<%= moment().format("YYYY-MM-DD") %>" class="default-today form-control input-md" required="" <%= itemEditing ? "disabled" : "" %>>
+      <input value="<%= item.start_date ? moment(item.start_date).format("YYYY-MM-DD") : "" %>" id="start_date" name="start_date" type="date" min="<%= moment().format("YYYY-MM-DD") %>" class="default-today form-control input-md" required="" <%= itemEditing ? "disabled" : "" %>>
       <span class="help-block">The start date.</span>
   </div>
 </div>
