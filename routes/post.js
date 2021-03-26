@@ -211,7 +211,7 @@ router
   })
 })
 // Get the update form
-.get(`${HOME_EXPRESS_ROUTE}/uploads/:id/view`, getHome, adminOrSuperadminRequired, getUploadById, function (req, res) {
+.get(`${HOME_EXPRESS_ROUTE}/uploads/:id/view`, getHome, checkAuthAndMaybeRedirect, getUploadById, function (req, res) {
   res.render("upload_view", {
     upload_item: req.upload_item,
     req
